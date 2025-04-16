@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esports.AI | Next Generation Gaming</title>
+    <style>
+        :root {
+            --primary: #00A3FF;
+            --secondary: #00E676;
+            --dark: #051B2C;
+            --light: #FFFFFF;
+            --accent: #7B4BFF;
+            --gradient: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--light);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            letter-spacing: -1px;
+        }
+        
+        .logo span {
+            color: var(--dark);
+            font-weight: 800;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--gradient);
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s;
+            border-radius: 5px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background-color: #f9f9f9;
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(var(--primary) 2px, transparent 2px),
+                radial-gradient(var(--secondary) 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+            padding-right: 50px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 163, 255, 0.25);
+        }
+        
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient);
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .c1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: -100px;
+        }
+        
+        .c2 {
+            width: 200px;
+            height: 200px;
+            bottom: -80px;
+            left: 60%;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero h2 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .feature-badges {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            background: rgba(0, 163, 255, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .badge.green {
+            background: rgba(0, 230, 118, 0.1);
+            color: var(--secondary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(0, 163, 255, 0.5);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px -5px rgba(0, 163, 255, 0.7);
+        }
+        
+        .btn-secondary {
+            background: rgba(0, 163, 255, 0.1);
+            color: var(--primary);
+            margin-left: 15px;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 163, 255, 0.2);
+        }
+        
+        /* Games Section */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section-bg {
+            background-color: #f9f9f9;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: #666;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .game-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .game-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .game-info {
+            padding: 25px;
+        }
+        
+        .game-info h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .game-info p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .game-players {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .game-action {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 14px;
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .game-action::after {
+            content: '→';
+            margin-left: 5px;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+        
+        .game-action:hover::after {
+            transform: translateX(5px);
+        }
+        
+        .game-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tag {
+            background-color: rgba(0, 163, 255, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .tag.green {
+            background-color: rgba(0, 230, 118, 0.1);
+            color: var(--secondary);
+        }
+        
+        /* AI Features */
+        .features {
+            background-color: white;
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-box {
+            padding: 40px 30px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .feature-box::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            transition: height 0.3s;
+            z-index: -1;
+        }
+        
+        .feature-box:hover::before {
+            height: 100%;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-box:hover .feature-icon {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .feature-box:hover h3,
+        .feature-box:hover p {
+            color: white;
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 163, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+        
+        .feature-box h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+        
+        .feature-box p {
+            color: #666;
+            line-height: 1.6;
+            transition: color 0.3s;
+        }
+        
+        /* Tournaments */
+        .tournaments {
+            background-color: #f9f9f9;
+        }
+        
+        .tournament-slider {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .tournament-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tournament-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .tournament-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+        
+        .tournament-date {
+            background: linear-gradient(135deg, #00A3FF, #00E676);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .tournament-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .tournament-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .tournament-stat {
+            flex: 1;
+            min-width: 100px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .tournament-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .tournament-games {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .game-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #f9f9f9;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Teams */
+        .teams {
+            background-color: white;
+        }
+        
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-card {
+            background-color: #f9f9f9;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .team-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background-color: white;
+            border-radius: 50%;
+            padding: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        
+        .team-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .team-card h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: var(--dark);
+        }
+        
+        .team-card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .team-stats {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .team-stat {
+            text-align: center;
+        }
+        
+        .team-stat-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .team-stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Call to Action */
+        .cta {
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-text {
+            flex: 1;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .cta-image {
+            flex: 1;
+            max-width: 450px;
+        }
+        
+        .cta-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            margin-bottom: 30px;
+            font-size: 18px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .btn-white {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .btn-white:hover {
+            background-color: rgba(255,255,255,0.9);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+        }
+        
+        .cta-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.1) 2px, transparent 2px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+            z-index: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            padding: 80px 0 30px;
+            color: white;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-about p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background: var(--gradient);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+            padding-left: 15px;
+            font-size: 15px;
+        }
+        
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            transition: transform 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-links a:hover::before {
+            transform: translateX(5px);
+        }
+        
+        .footer-newsletter p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        .newsletter-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .cta-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cta-text {
+                margin-bottom: 40px;
+            }
+            
+            .feature-badges {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                Esports<span>.AI</span>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#games">Games</a></li>
+                    <li><a href="#features">AI Features</a></li>
+                    <li><a href="#tournaments">Tournaments</a></li>
+                    <li><a href="#teams">Teams</a></li>
+                    <li><a href="#tickets">Tickets</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-pattern"></div>
+        <div class="floating-circle c1"></div>
+        <div class="floating-circle c2"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Level Up Your Game with AI-Powered Esports</h1>
+                <h2>Revolutionizing competitive gaming through advanced analytics, personalized training, and immersive tournament experiences.</h2>
+                <div class="feature-badges">
+                    <div class="badge">AI Match Analysis</div>
+                    <div class="badge green">Skill Enhancement</div>
+                    <div class="badge">Global Tournaments</div>
+                </div>
+                <div>
+                    <a href="#games" class="btn btn-primary">Explore Games</a>
+                    <a href="#features" class="btn btn-secondary">AI Features</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/api/placeholder/500/350" alt="Esports Gaming">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Games Section -->
+    <section class="section section-bg" id="games">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Games</h2>
+                <p>Explore the hottest competitive titles enhanced with our AI technology</p>
+            </div>
+            <div class="games-grid">
+                <!-- Game 1 -->
+                <div class="game-card">
+                    <img src="/api/placeholder/350/200" alt="PUBG Mobile" class="game-img">
+                    <div class="game-info">
+                        <h3>PUBG MOBILE</h3>
+                        <p>Dominate the battlefield with AI-powered strategy and real-time analysis</p>
+                        <div class="game-tags">
+                            <span class="tag">Battle Royale</span>
+                            <span class="tag green">Mobile</span>
+                        </div>
+                        <div class="game-meta">
+                            <div class="game-players">50M+ Players</div>
+                            <a href="#" class="game-action">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game 2 -->
+                <div class="game-card">
+                    <img src="/api/placeholder/350/200" alt="Free Fire" class="game-img">
+                    <div class="game-info">
+                        <h3>FREE FIRE</h3>
+                        <p>Fast-paced action with smart character abilities optimization</p>
+                        <div class="game-tags">
+                            <span class="tag">Battle Royale</span>
+                            <span class="tag green">Mobile</span>
+                        </div>
+                        <div class="game-meta">
+                            <div class="game-players">80M+ Players</div>
+                            <a href="#" class="game-action">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game 3 -->
+                <div class="game-card">
+                    <img src="/api/placeholder/350/200" alt="Valorant" class="game-img">
+                    <div class="game-info">
+                        <h3>VALORANT</h3>
+                        <p>Advanced tactical insights and agent-specific training programs</p>
+                        <div class="game-tags">
+                            <span class="tag">Tactical FPS</span>
+                            <span class="tag green">PC</span>
+                        </div>
+                        <div class="game-meta">
+                            <div class="game-players">15M+ Players</div>
+                            <a href="#" class="game-action">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game 4 -->
+                <div class="game-card">
+                    <img src="/api/placeholder/350/200" alt="Minecraft" class="game-img">
+                    <div class="game-info">
+                        <h3>MINECRAFT</h3>
+                        <p>Creative optimization and competitive building strategies</p>
+                        <div class="game-tags">
+                            <span class="tag">Sandbox</span>
+                            <span class="tag green">Cross-platform</span>
+                        </div>
+                        <div class="game-meta">
+                            <div class="game-players">140M+ Players</div>
+                            <a href="#" class="game-action">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game 5 -->
+                <div class="game-card">
+                    <img src="/api/placeholder/350/200" alt="League of Legends" class="game-img">
+                    <div class="game-info">
+                        <h3>LEAGUE OF LEGENDS</h3>
+                        <p>Comprehensive champion matchups and team composition analysis</p>
+                        <div class="game-tags">
+                            <span class="tag">MOBA</span>
+                            <span class="tag green">PC</span>
+                        </div>
+                        <div class="game-meta">
+                            <div class="game-players">120M+ Players</div>
+                            <a href="#" class="game-action">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game 6 -->
+                <div class="game-card">
+                    <img src="/api/placeholder/350/200" alt="Call of Duty Mobile" class
+                      
+                      <!-- Continuing from where it was cut off -->
+                    <img src="/api/placeholder/350/200" alt="Call of Duty Mobile" class="game-img">
+                    <div class="game-info">
+                        <h3>CALL OF DUTY MOBILE</h3>
+                        <p>Master weapons, maps, and tactics with personalized AI coaching</p>
+                        <div class="game-tags">
+                            <span class="tag">FPS</span>
+                            <span class="tag green">Mobile</span>
+                        </div>
+                        <div class="game-meta">
+                            <div class="game-players">100M+ Players</div>
+                            <a href="#" class="game-action">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AI Features Section -->
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI-Powered Features</h2>
+                <p>Enhance your gaming experience with cutting-edge artificial intelligence</p>
+            </div>
+            <div class="features-container">
+                <!-- Feature 1 -->
+                <div class="feature-box">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Performance Analytics</h3>
+                    <p>Advanced AI analyses your gameplay in real-time, identifying strengths and areas for improvement with actionable insights.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-box">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Personalized Training</h3>
+                    <p>Custom training regimens tailored to your playstyle, skill level, and goals to accelerate your improvement.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-box">
+                    <div class="feature-icon">👥</div>
+                    <h3>Team Synergy</h3>
+                    <p>Optimize your team compositions and strategies based on individual player strengths and complementary playstyles.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-box">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Coach</h3>
+                    <p>Your personal virtual coach provides feedback, suggests tactics, and helps you develop game-winning strategies.</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-box">
+                    <div class="feature-icon">📊</div>
+                    <h3>Opponent Analysis</h3>
+                    <p>Study your opponents' patterns and tendencies to anticipate their moves and develop effective counter-strategies.</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-box">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Tournament Predictions</h3>
+                    <p>AI-generated forecasts for upcoming matches and tournaments based on historical data and current form.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tournaments Section -->
+    <section class="section tournaments section-bg" id="tournaments">
+        <div class="container">
+            <div class="section-title">
+                <h2>Upcoming Tournaments</h2>
+                <p>Join exciting competitions and test your skills against players worldwide</p>
+            </div>
+            <div class="tournament-slider">
+                <!-- Tournament 1 -->
+                <div class="tournament-card">
+                    <div class="tournament-header">
+                        <img src="/api/placeholder/60/60" alt="Tournament Logo" class="tournament-logo">
+                        <div class="tournament-date">May 10-15, 2025</div>
+                    </div>
+                    <h3 class="tournament-title">Global Masters Championship</h3>
+                    <div class="tournament-info">
+                        <div class="tournament-stat">
+                            <div class="stat-value">$250,000</div>
+                            <div class="stat-label">Prize Pool</div>
+                        </div>
+                        <div class="tournament-stat">
+                            <div class="stat-value">128</div>
+                            <div class="stat-label">Teams</div>
+                        </div>
+                        <div class="tournament-stat">
+                            <div class="stat-value">Global</div>
+                            <div class="stat-label">Region</div>
+                        </div>
+                    </div>
+                    <div class="tournament-footer">
+                        <div class="tournament-games">
+                            <div class="game-icon">
+                                <img src="/api/placeholder/20/20" alt="Game Icon">
+                            </div>
+                            <div class="game-icon">
+                                <img src="/api/placeholder/20/20" alt="Game Icon">
+                            </div>
+                        </div>
+                        <a href="#" class="game-action">Register Now</a>
+                    </div>
+                </div>
+                
+                <!-- Tournament 2 -->
+                <div class="tournament-card">
+                    <div class="tournament-header">
+                        <img src="/api/placeholder/60/60" alt="Tournament Logo" class="tournament-logo">
+                        <div class="tournament-date">June 5-12, 2025</div>
+                    </div>
+                    <h3 class="tournament-title">Asia Cup Invitational</h3>
+                    <div class="tournament-info">
+                        <div class="tournament-stat">
+                            <div class="stat-value">$150,000</div>
+                            <div class="stat-label">Prize Pool</div>
+                        </div>
+                        <div class="tournament-stat">
+                            <div class="stat-value">64</div>
+                            <div class="stat-label">Teams</div>
+                        </div>
+                        <div class="tournament-stat">
+                            <div class="stat-value">Asia</div>
+                            <div class="stat-label">Region</div>
+                        </div>
+                    </div>
+                    <div class="tournament-footer">
+                        <div class="tournament-games">
+                            <div class="game-icon">
+                                <img src="/api/placeholder/20/20" alt="Game Icon">
+                            </div>
+                        </div>
+                        <a href="#" class="game-action">Register Now</a>
+                    </div>
+                </div>
+                
+                <!-- Tournament 3 -->
+                <div class="tournament-card">
+                    <div class="tournament-header">
+                        <img src="/api/placeholder/60/60" alt="Tournament Logo" class="tournament-logo">
+                        <div class="tournament-date">July 20-25, 2025</div>
+                    </div>
+                    <h3 class="tournament-title">Pro League Season 5</h3>
+                    <div class="tournament-info">
+                        <div class="tournament-stat">
+                            <div class="stat-value">$350,000</div>
+                            <div class="stat-label">Prize Pool</div>
+                        </div>
+                        <div class="tournament-stat">
+                            <div class="stat-value">16</div>
+                            <div class="stat-label">Teams</div>
+                        </div>
+                        <div class="tournament-stat">
+                            <div class="stat-value">Global</div>
+                            <div class="stat-label">Region</div>
+                        </div>
+                    </div>
+                    <div class="tournament-footer">
+                        <div class="tournament-games">
+                            <div class="game-icon">
+                                <img src="/api/placeholder/20/20" alt="Game Icon">
+                            </div>
+                            <div class="game-icon">
+                                <img src="/api/placeholder/20/20" alt="Game Icon">
+                            </div>
+                            <div class="game-icon">
+                                <img src="/api/placeholder/20/20" alt="Game Icon">
+                            </div>
+                        </div>
+                        <a href="#" class="game-action">Register Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Teams Section -->
+    <section class="section teams" id="teams">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Teams</h2>
+                <p>Meet the top-performing esports organizations on our platform</p>
+            </div>
+            <div class="teams-grid">
+                <!-- Team 1 -->
+                <div class="team-card">
+                    <div class="team-logo">
+                        <img src="/api/placeholder/70/70" alt="Team Logo">
+                    </div>
+                    <h3>Nova Esports</h3>
+                    <p>Mobile Gaming Specialists</p>
+                    <div class="team-stats">
+                        <div class="team-stat">
+                            <div class="team-stat-value">42</div>
+                            <div class="team-stat-label">Wins</div>
+                        </div>
+                        <div class="team-stat">
+                            <div class="team-stat-value">5</div>
+                            <div class="team-stat-label">Titles</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team 2 -->
+                <div class="team-card">
+                    <div class="team-logo">
+                        <img src="/api/placeholder/70/70" alt="Team Logo">
+                    </div>
+                    <h3>Titan Gaming</h3>
+                    <p>FPS Champions</p>
+                    <div class="team-stats">
+                        <div class="team-stat">
+                            <div class="team-stat-value">36</div>
+                            <div class="team-stat-label">Wins</div>
+                        </div>
+                        <div class="team-stat">
+                            <div class="team-stat-value">3</div>
+                            <div class="team-stat-label">Titles</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team 3 -->
+                <div class="team-card">
+                    <div class="team-logo">
+                        <img src="/api/placeholder/70/70" alt="Team Logo">
+                    </div>
+                    <h3>Phoenix Elite</h3>
+                    <p>MOBA Specialists</p>
+                    <div class="team-stats">
+                        <div class="team-stat">
+                            <div class="team-stat-value">29</div>
+                            <div class="team-stat-label">Wins</div>
+                        </div>
+                        <div class="team-stat">
+                            <div class="team-stat-value">2</div>
+                            <div class="team-stat-label">Titles</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team 4 -->
+                <div class="team-card">
+                    <div class="team-logo">
+                        <img src="/api/placeholder/70/70" alt="Team Logo">
+                    </div>
+                    <h3>Eclipse Gaming</h3>
+                    <p>Battle Royale Experts</p>
+                    <div class="team-stats">
+                        <div class="team-stat">
+                            <div class="team-stat-value">33</div>
+                            <div class="team-stat-label">Wins</div>
+                        </div>
+                        <div class="team-stat">
+                            <div class="team-stat-value">4</div>
+                            <div class="team-stat-label">Titles</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action Section -->
+    <section class="section cta" id="tickets">
+        <div class="cta-pattern"></div>
+        <div class="container cta-container">
+            <div class="cta-text">
+                <h2>Ready to Elevate Your Gaming Experience?</h2>
+                <p>Join our platform today and access AI-powered tools, enter tournaments, and connect with the global esports community.</p>
+                <a href="#" class="btn btn-white">Get Started Now</a>
+            </div>
+            <div class="cta-image">
+                <img src="/api/placeholder/450/300" alt="Gaming Experience">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column footer-about">
+                    <div class="footer-logo">Esports.AI</div>
+                    <p>Revolutionizing competitive gaming through advanced AI technology, bringing players, teams, and fans together in a new era of esports.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#games">Games</a></li>
+                        <li><a href="#features">AI Features</a></li>
+                        <li><a href="#tournaments">Tournaments</a></li>
+                        <li><a href="#teams">Teams</a></li>
+                        <li><a href="#tickets">Tickets</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community Forums</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Development Blog</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with the latest tournaments, game updates, and AI features.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" class="newsletter-input">
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Esports.AI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Add Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+</html>
+
